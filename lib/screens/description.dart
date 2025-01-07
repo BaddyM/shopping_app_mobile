@@ -345,9 +345,15 @@ class _ProductDescriptionState extends State<ProductDescription> {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      setState(() {
+                                        if (quantity > 1) {
+                                          quantity--;
+                                        }
+                                      });
+                                    },
                                     icon: const Icon(
-                                      Icons.add,
+                                      Icons.remove,
                                       color: Colors.white,
                                       size: 25,
                                     ),
@@ -367,9 +373,13 @@ class _ProductDescriptionState extends State<ProductDescription> {
                                     ),
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      setState(() {
+                                        quantity++;
+                                      });
+                                    },
                                     icon: const Icon(
-                                      Icons.remove,
+                                      Icons.add,
                                       color: Colors.white,
                                       size: 25,
                                     ),

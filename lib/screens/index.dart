@@ -23,46 +23,10 @@ class HomePage extends StatelessWidget {
     ];
 
     List<ShopItemModel> shopItems = [
-      ShopItemModel.fromJson({
-        "image": "1.jpg",
-        "title": "Watch",
-        "price": "120.00",
-        "rating": 4.2,
-        "description": "This is a silver rolex watch that is so original",
-        "reviews": "Lots of people have bought the item",
-        "seller": "Henry",
-        "specification": "Silver watch"
-      }),
-      ShopItemModel.fromJson({
-        "image": "2.jpg",
-        "title": "Acer Laptop",
-        "price": "549.00",
-        "rating": 4.8,
-        "description": "Amazing Black acer laptop that can handle multiple tasks a day",
-        "reviews": "Lots of people have bought the item",
-        "seller": "Richard",
-        "specification": "32GB RAM, 4 hours battery, comes with a 250watt charger"
-      }),
-      ShopItemModel.fromJson({
-        "image": "3.jpg",
-        "title": "Picfare Counter Book",
-        "price": "5.40",
-        "rating": 4.3,
-        "description": "This is a black counter book that holds all kinds of information in one go",
-        "reviews": "I highly recommend this product",
-        "seller": "Sarah",
-        "specification": "Black book"
-      }),
-      ShopItemModel.fromJson({
-        "image": "4.png",
-        "title": "Black Boots",
-        "price": "234.00",
-        "rating": 4.2,
-        "description": "Boots that will help you walk in the mud on a heavy rainy day",
-        "reviews": "Lots of people have bought the item",
-        "seller": "Henry",
-        "specification": "Black boots"
-      }),
+      ShopItemModel.fromJson({"image": "1.jpg", "title": "Watch", "price": "120.00", "rating": 4.2, "description": "This is a silver rolex watch that is so original", "reviews": "Lots of people have bought the item", "seller": "Henry", "specification": "Silver watch"}),
+      ShopItemModel.fromJson({"image": "2.jpg", "title": "Acer Laptop", "price": "549.00", "rating": 4.8, "description": "Amazing Black acer laptop that can handle multiple tasks a day", "reviews": "Lots of people have bought the item", "seller": "Richard", "specification": "32GB RAM, 4 hours battery, comes with a 250watt charger"}),
+      ShopItemModel.fromJson({"image": "3.jpg", "title": "Picfare Counter Book", "price": "5.40", "rating": 4.3, "description": "This is a black counter book that holds all kinds of information in one go", "reviews": "I highly recommend this product", "seller": "Sarah", "specification": "Black book"}),
+      ShopItemModel.fromJson({"image": "4.png", "title": "Black Boots", "price": "234.00", "rating": 4.2, "description": "Boots that will help you walk in the mud on a heavy rainy day", "reviews": "Lots of people have bought the item", "seller": "Henry", "specification": "Black boots"}),
     ];
 
     return Column(
@@ -103,8 +67,7 @@ class HomePage extends StatelessWidget {
                           child: Text(
                             "SuperSale Discount",
                             softWrap: true,
-                            style: TextStyle(
-                                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20, overflow: TextOverflow.visible),
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20, overflow: TextOverflow.visible),
                           ),
                         ),
                         const SizedBox(
@@ -125,13 +88,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
           ],
-          options: CarouselOptions(
-              autoPlayCurve: Curves.easeInOut,
-              scrollDirection: Axis.vertical,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 4),
-              pageSnapping: true,
-              viewportFraction: 1),
+          options: CarouselOptions(autoPlayCurve: Curves.easeInOut, scrollDirection: Axis.vertical, autoPlay: true, autoPlayInterval: const Duration(seconds: 4), pageSnapping: true, viewportFraction: 1),
         ),
         //Product Categories Slider
         CarouselSlider(
@@ -202,6 +159,7 @@ class HomePage extends StatelessWidget {
                       rating: shopItems[i].rating,
                       specification: shopItems[i].specification,
                       seller: shopItems[i].seller,
+                      index: i,
                     ),
                   ),
                 );

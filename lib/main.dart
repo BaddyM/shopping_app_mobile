@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_app/screens/cart.dart';
 import 'package:shopping_app/screens/description.dart';
 import 'package:shopping_app/screens/home.dart';
 import 'package:shopping_app/screens/index.dart';
+import 'providers/cart_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,6 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColorDark: Colors.blue.withOpacity(1),
         appBarTheme: const AppBarTheme(color: Colors.white),
+        scaffoldBackgroundColor: Colors.grey.shade200,
         primaryColor: Colors.blue,
         textTheme: const TextTheme(
           bodyMedium: TextStyle(

@@ -4,6 +4,7 @@ import 'package:shopping_app/screens/cart.dart';
 import 'package:shopping_app/screens/description.dart';
 import 'package:shopping_app/screens/home.dart';
 import 'package:shopping_app/screens/index.dart';
+import 'package:shopping_app/screens/profile.dart';
 import 'providers/cart_provider.dart';
 
 void main() {
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(color: Colors.white),
         scaffoldBackgroundColor: Colors.grey.shade200,
         primaryColor: Colors.blue,
+        primaryColorLight: const Color.fromARGB(255, 251, 113, 0),
         textTheme: const TextTheme(
           bodyMedium: TextStyle(
             fontWeight: FontWeight.bold,

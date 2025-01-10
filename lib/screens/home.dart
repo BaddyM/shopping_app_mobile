@@ -5,6 +5,7 @@ import "package:shopping_app/providers/cart_provider.dart";
 import "package:shopping_app/screens/cart.dart";
 import "package:shopping_app/screens/description.dart";
 import "package:shopping_app/screens/index.dart";
+import "package:shopping_app/screens/profile.dart";
 
 class ShopHome extends StatelessWidget {
   const ShopHome({super.key});
@@ -49,7 +50,14 @@ class ShopHome extends StatelessWidget {
                 ],
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Profile(),
+                    ),
+                  );
+                },
                 icon: const HugeIcon(
                   icon: HugeIcons.strokeRoundedUser,
                   color: Colors.black,

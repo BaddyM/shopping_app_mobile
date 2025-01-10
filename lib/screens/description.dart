@@ -407,8 +407,16 @@ class _ProductDescriptionState extends State<ProductDescription> {
                                 child: TextButton(
                                   onPressed: () {
                                     provider.addToCart(
-                                      Cart(image: widget.image, title: widget.title, price: double.parse(widget.price.toString()), shop: widget.seller, qty: quantity, index: widget.index),
+                                      Cart(
+                                        image: widget.image,
+                                        title: widget.title,
+                                        price: (double.parse(widget.price.toString()) * quantity),
+                                        shop: widget.seller,
+                                        qty: quantity,
+                                        index: widget.index,
+                                      ),
                                     );
+                                    provider.cartSubTotal();
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                         content: Text("Item added to cart"),
@@ -416,7 +424,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                                     );
                                   },
                                   style: TextButton.styleFrom(
-                                    backgroundColor: const Color.fromARGB(255, 251, 113, 0),
+                                    backgroundColor: Theme.of(context).primaryColorLight,
                                   ),
                                   child: const Text(
                                     "Add to Cart",

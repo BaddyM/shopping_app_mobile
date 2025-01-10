@@ -13,23 +13,6 @@ class ShopCart extends StatefulWidget {
 }
 
 class _ShopCartState extends State<ShopCart> {
-  // List<Cart> cartItem = [
-  //   Cart.fromJson({
-  //     "image": "1.jpg",
-  //     "title": "Rolex Watch",
-  //     "price": 56.00,
-  //     "shop": "Mukwano Arcade",
-  //     "qty": 1,
-  //   }),
-  //   Cart.fromJson({
-  //     "image": "2.jpg",
-  //     "title": "Acer Laptop",
-  //     "price": 1500.00,
-  //     "shop": "Mutaasa Kafeero",
-  //     "qty": 1,
-  //   }),
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return Consumer<CartProvider>(
@@ -66,16 +49,24 @@ class _ShopCartState extends State<ShopCart> {
                     height: 10,
                   ),
                   for (int i = 0; i < cartItem.length; i++)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: CartItem(
-                        image: cartItem[i].image.toString(),
-                        title: cartItem[i].title.toString(),
-                        price: cartItem[i].price!.toDouble(),
-                        shop: cartItem[i].shop.toString(),
-                        qty: cartItem[i].qty!.toInt(),
-                      ),
-                    ),
+                    cartItem.isNotEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: CartItem(
+                              image: cartItem[i].image.toString(),
+                              title: cartItem[i].title.toString(),
+                              price: cartItem[i].price!.toDouble(),
+                              shop: cartItem[i].shop.toString(),
+                              qty: cartItem[i].qty!.toInt(),
+                              index: i,
+                            ),
+                          )
+                        : const Text(
+                            "Sorry, your cart seems empty",
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
                   Container(
                     padding: const EdgeInsets.all(15.0),
                     decoration: const BoxDecoration(
@@ -136,17 +127,42 @@ class _ShopCartState extends State<ShopCart> {
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
-                            Builder(builder: (context) {
-                              var subTotal = 0.0;
-                              for (int i = 0; i < cartItem.length; i++) {
-                                subTotal = subTotal + cartItem[i].price!.toDouble();
-                              }
-                              return Text("");
-                            }),
+                            Text("\$${provider.cartTotal.toStringAsFixed(2)}"),
                           ],
                         ),
                         const SizedBox(
                           height: 20,
+                        ),
+                        Container(
+                          width: double.maxFinite,
+                          child: TextButton(
+                            onPressed: () {
+                              provider.checkout();
+                              provider.cartSubTotal();
+                              Navigator.of(context).pop();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: Theme.of(context).primaryColor,
+                                  content: const Text(
+                                    "Order Completed successfully",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              );
+                            },
+                            style: TextButton.styleFrom(
+                              backgroundColor: Theme.of(context).primaryColorLight,
+                              elevation: 5,
+                              shadowColor: Colors.grey.shade300,
+                            ),
+                            child: const Text(
+                              "Checkout",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
